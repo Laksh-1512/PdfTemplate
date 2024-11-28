@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>z
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="index.css">
   <title>Feedback Report</title>
 </head>
@@ -137,15 +138,17 @@
           <h1 class='w-full h-[29px] font-helvetica text-[12.462px] font-[500] mb-[10px]'>Performance Analysis </h1>
           <hr class='h-[1px]  opacity-80 bg-[#2F3E46] mb-[10px] w-full'></hr>
           <div class="w-[463px] h-[173px] ">
-
+            <canvas id="performanceChart"></canvas>
           </div>
       </div>
       <div class='flex flex-row gap-[20px]'>
           <div class='w-[238px] h-[252px] py-[16.528px] px-[18.181px] bg-white rounded-xl flex flex-col items-center  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
+            <canvas id="performanceRadarChart"></canvas>
           </div>
           <div class='w-[238px] h-[252px] py-[16.528px] px-[18.181px] bg-white rounded-xl flex flex-col items-start  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
             <h1 class='font-helvetica font-[500] text-[12.462px] mb-[10px]'>Communication Analysis</h1>
             <hr class='h-[1px]  opacity-80 bg-[#2F3E46] mb-[10px] w-full'></hr>
+            <canvas id="verticalBarChart" width="600" height="400"></canvas>
            </div>
       </div>
       <div class='w-[507px] h-[177px] bg-white rounded-xl flex flex-col items-center  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
