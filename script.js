@@ -52,7 +52,7 @@ const areaofimporvement = [
           labels: ['Technical Skills', 'Soft Skills', 'Problem Solving', 'Cultural Fit', 'Leadership'],
           datasets: [{
               label: 'Score',
-              data: [80, 70, 75, 60, 50], // Example data
+              data: [80, 70, 75, 60, 50], 
               backgroundColor: function(context) {
                   const chart = context.chart;
                   const {ctx, chartArea} = chart;
@@ -79,16 +79,16 @@ const areaofimporvement = [
           scales: {
               x: {
                 ticks: {
-                    stepSize: 5 // Set y-axis scale interval to 20
+                    stepSize: 10 // Set y-axis scale interval to 20
                 },
                   beginAtZero: true,
                   max: 120,
                   barPercentage: 1, // Decrease bar width to 50% of the category width
-                categoryPercentage: 2 
+                categoryPercentage: 1 
               },
               y:{
                 barPercentage: 1, // Decrease bar width to 50% of the category width
-                categoryPercentage: 5,
+                categoryPercentage: 2,
               }
           },
           plugins: {

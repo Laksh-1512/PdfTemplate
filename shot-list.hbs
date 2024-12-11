@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="index.css">
+  <title>Feedback Report</title>
+  <style>
+    
+    @page {
+      size: 595px 842px; /* A4 dimensions in pixels */
+      margin: 0;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      width: 595px;
+      height: 842px;
+    }
+    .main {
+      width: 100%;
+      height: 100%;
+    }
+    .content {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  
+</head>
+<body>
+ 
+     <div class="bg-[#2F3E46] w-[595px] h-[842px] flex flex-col items-center justify-start gap-y-[60px]">
+      <img class="w-full h-1/2" src="{{headerimg}}" alt="Feedback Report Image">
+      <h1 class="text-[#FFF] font-[700] text-[32px]">{{title}}</h1>
+      <div class="gap-[12px] flex flex-row items-center justify-center w-[441px] h-[73px]">
+          <h1 class="font-[500] font-helvetica text-[20px] text-[#FFF]">{{topic}}</h1>
+          <h1 class="h-full w-[2px] bg-[#FFF]"></h1>
+          <h1 class="font-[500] font-helvetica text-[20px] text-[#FFF]">{{date}}</h1>
+          <h1 class="h-full w-[2px] bg-[#FFF]"></h1>
+          <h1 class="font-[500] font-helvetica text-[20px] text-[#FFF]">{{interviewer.name}}</h1>
+      </div>
+      <div class="flex flex-row items-center justify-center">
+          <img class="w-[43px] h-[36px] mr-[12px]" src="{{logo}}" alt="Logo">
+          <h1 class="text-[25px] font-[700] font-helvetica text-[#FFEAC3]">{{companyname}}</h1>
+      </div>
+    </div>
+    {{!-- page 2  --}}
+      <div class='bg-[#2F3E46] relative w-[595px] h-[842px]   flex flex-col items-center justify-center gap-y-[10px]'>
+        <div class='w-full h-[210px] flex  flex-col items-center justify-center'>
+          <div class='flex flex-row w-[506px] mt-[12px] h-[19px] items-center justify-center '>
+          <img class='w-[22px] h-[19px] m-1'src={{logo}} ></img>
+            <h1 class='text-[12.8px] font-[700] font-helvetica text-[#FFEAC3]'>{{companyname}}</h1>
+            <hr class='w-[366px] h-[2px] m-2 mt-3'></hr>
+            <h1 class='text-white opacity-60 h-[19px] text-sm'>1</h1>
+          </div>
+          <div class='flex flex-row py-[20px] w-full h-[154px]'>
+              <img src="" class='ml-[16px] h-[110px] w-[120px] rounded-lg ' alt="" />
+              <div class='flex w-full justify-between  ml-[16px] mr-[16px] mt-[12px] mb-[12px] items-stretch'>
+                <div class='flex flex-col h-full relative'>
+                  <h1 class='text-[#EFF3F8] font-helvetica text-[18px] font-medium leading-normal opacity-90'>{{candidate.name}}</h1>
+                  <p class='text-[#EFF3F8] font-helvetica text-[12px] font-[400] leading-normal opacity-80'>{{candidate.email}}</p>
+                  <button class='absolute bottom-0   w-[167px] h-[28px] rounded-[9px] border border-[#A2A2A2] flex px-[20px] py-[8px] justify-center items-center gap-[10px]  self-stretch font-helvetica font-[12px] text-[#EFF3F8]'>Open Recording</button>
+                </div>
+                <div>
+                  <h1 class='text-[#FFF] font-helvetica text-[12px] font-medium leading-normal opacity-90'>Interview Details</h1>
+                  <p class='text-[#FFF] font-helvetica text-[12px] font-[400] leading-normal opacity-70'>{{candidate.date}}, {{candidate.time}}</p>
+                  <p class='text-[#FFF] mt-[10px] font-helvetica text-[12px] font-medium leading-normal opacity-90'>Interview Type</p>
+                  <p class='text-[#FFF] font-helvetica text-[12px] font-[400] leading-normal opacity-90'>{{candidate.type}}</p>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class='w-full h-full bg-[#EFF3F8] flex flex-col items-center justify-center  gap-y-[10px]'>
+        <div class=' w-[507px] h-[162px] px-[22px] py-[17px] bg-white rounded-xl flex flex-col items-center  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
+            <h1 class='w-full h-[29px] font-helvetica text-[12.462px] font-[500] mb-[10px]'>Summary </h1>
+            <hr class='h-[1px]  opacity-80 bg-[#2F3E46] mb-[10px] w-full'></hr>
+            <div class="w-full h-full  text-[12px] opacity-80">
+            {{candidate.summary}} </div>
+          </div>
+          <div class='flex flex-row gap-[10px]'>
+            <div class='w-[240px] h-[262px] py-[20px] px-[22px] bg-white rounded-xl flex flex-col items-center  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
+              <h1 class='font-helvetica font-[500] text-[12.462px] mb-[10px]'>Key Insights</h1>
+              <hr class='h-[1px]  opacity-80 bg-[#2F3E46] mb-[10px] w-full'></hr>
+              {{#each candidate.keyinsights}}
+              <ul class='font-helvetica font-[400] text-[11px] p-2'>{{this}}</ul>
+              {{/each}}
+            </div>
+            <div class="w-[240px] h-[262px] absolute bg-white rounded-xl flex flex-col items-center border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)] relative">
+              <img class="h-full w-full rounded-xl" src="" alt="" />
+              <h1 class="absolute top-40 font-helvetica  z-10 text-[#2F3E46] text-[12.462px]">+10 Aspire Points</h1>
+              <h1 class='absolute top-[190px] left-2 font-helvetica  z-10 text-[#2F3E46] text-[10px]'>AspirePoints is a performance metric that quantifies candidates performance with real world statistics.</h1>
+            </div>
+          </div>
+          <div class=' w-[507px] h-[162px] px-[22px] py-[17px] bg-white rounded-xl flex flex-col items-center  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
+            <h1 class='w-full h-[29px] font-helvetica text-[12.462px] font-[500] mb-[10px]'>Standout Moment </h1>
+            <hr class='h-[1px]  opacity-80 bg-[#2F3E46] mb-[10px] w-full'></hr>
+            <div class="w-full h-full  font-helvetica font-[400] opacity-80 text-[12px] ">
+            {{candidate.standout}}</div>
+          </div>
+         
+        </div>
+        <div class="absolute bottom-1  flex flex-col items-end">
+            <hr class="w-[507px] h-[1.5px] bg-[#2F3E46] mb-[4px]" />
+            <h1 class="font-helvetica text-[9.811px] -mt-[2px] font-[400] text-[#2F3E46] opacity-80">Executive Summary</h1>
+        </div>
+      </div>
+  <!-- page3 -->
+        <div class=" relative w-[595px] h-[842px] flex flex-col justify-center gap-y-[10px] items-center bg-[#EFF3F8]">
+          <div class="w-[595px] h-[71px] flex flex-row items-center justify-center bg-[#2F3E46]">
+          <div class="flex flex-row items-center justify-center">
+              <img class='w-[22px] h-[19px] m-1'src={{logo}} ></img>
+              <h1 class='text-[12.8px] font-[700] font-helvetica text-[#FFEAC3]'>{{companyname}}</h1>
+              <hr class='w-[366px] h-[2px] m-2 mt-3'></hr>
+              <h1 class='text-white opacity-60 h-[19px] text-sm'>2</h1>
+          </div>
+        </div>
+
+      <div class="w-full h-full flex  flex-col items-center justify-center ">
+      <div class=' w-[507px] h-[242px] px-[22px] py-[20px] bg-[#F8F8F8] rounded-xl flex flex-col items-center   border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
+            <h1 class='w-full h-[18px] font-helvetica text-[20px] font-[500]  mb-[20px]'>About Interviewer</h1>
+            <hr class='h-[1px]  opacity-80 bg-[#2F3E46]  mb-[20px] w-full'></hr>
+            <div class="w-full h-full flex flex-row gap-[10px]">
+              <img src="" class='w-[165px] h-[150px] rounded-lg ' alt="" />
+              <div class='flex flex-col'>
+                  <h1 class='font-helvetica text-[14.3px] font-[500] text-[#2F3E46] tracking-[-0.286px]  '>{{interviewer.name}}</h1>
+                  <h3 class='font-helvetica opacity-60 text-[8.579px] font-[500] text-[#2F3E46] tracking-[-0.176px]  '>{{interviewer.role}}</h3>
+                  <p class='font-helvetica text-[8.57px] font-[500] text-[#2F3E46] tracking-[-0.176px]  '>{{interviewer.bio}}</p>
+                  <h1 class='font-helvetica opacity-60 text-[8.579px] font-[500] text-[#2F3E46] tracking-[-0.176px]  '>{{interviewer.expertise}}</h1>
+                  <h1 class='font-helvetica opacity-60 text-[8.579px] font-[500] text-[#2F3E46] tracking-[-0.176px]  '>{{interviewer.position}}</h1>
+              </div>
+            </div>
+          </div>
+        <img class=" mt-[10px]  w-[507px] h-[427px] flex-shrink-0 rounded-[16px] border border-black/12 bg-[#F8F8F8] shadow-[0_2px_8px_0_rgba(0,0,0,0.04)]" src="/photos/Frame 59591.png" alt=""/>
+      </div>
+      <div class="absolute bottom-1  flex flex-col items-end">
+              <hr class="w-[507px] h-[1.5px] bg-[#2F3E46] opacity-80 mb-[4px]" />
+              <h1 class="font-helvetica text-[9.811px] -mt-[2px] font-[400] text-[#2F3E46] opacity-80">Interview Overview</h1>
+      </div>
+    </div>
+    {{!-- page4 --}}
+        
+   <!-- page 4 -->
+{{!-- <div class="relative w-[595px] h-[842px] flex flex-col justify-center gap-y-[10px] items-center bg-[#EFF3F8]">
+  <div class="w-[595px] h-[71px] flex flex-row items-center justify-center bg-[#2F3E46]">
+    <div class="flex flex-row items-center justify-center">
+      <img class="w-[22px] h-[19px] m-1" src="/photos/Frame 3.png" alt="Logo" />
+      <h1 class="text-[12.8px] font-[700] font-helvetica text-[#FFEAC3]">HappyAspirants</h1>
+      <hr class="w-[366px] h-[2px] m-2 mt-3" />
+      <h1 class="text-white opacity-60 h-[19px] text-sm">3</h1>
+    </div>
+  </div>
+
+  <div class="w-[507px] h-[251px] px-[22px] py-[17px] bg-white rounded-xl flex flex-col items-center border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+    <h1 class="w-full h-[29px] font-helvetica text-[12.462px] font-[500] mb-[10px]">Performance Analysis</h1>
+    <hr class="h-[1px] opacity-80 bg-[#2F3E46] mb-[10px] w-full" />
+    <div class="h-[173px] w-full">
+      <!-- Placeholder for performance chart -->
+      <canvas id="performanceChart"></canvas>
+    </div>
+  </div>
+
+  <div class="flex flex-row gap-[20px]">
+    <div class="w-[238px] h-[252px] py-[16.528px] px-[18.181px] bg-white rounded-xl flex flex-col items-center border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+      <!-- Placeholder for radar chart -->
+      <canvas id="performanceRadarChart"></canvas>
+    </div>
+    <div class="w-[238px] h-[252px] py-[16.528px] px-[18.181px] bg-white rounded-xl flex flex-col items-start border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+      <h1 class="font-helvetica font-[500] text-[12.462px] mb-[10px]">Communication Analysis</h1>
+      <hr class="h-[1px] opacity-80 bg-[#2F3E46] mb-[10px] w-full" />
+      <canvas id="verticalBarChart" width="600" height="400"></canvas>
+    </div>
+  </div>
+
+  <div class="w-[507px] h-[177px] bg-white rounded-xl flex flex-col items-center border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+    {{!-- Add content or dynamic data here --}}
+  </div>
+
+  <div class="absolute bottom-1 flex flex-col items-end">
+    <hr class="w-[507px] h-[1.5px] bg-[#2F3E46] opacity-80 mb-[4px]" />
+    <h1 class="font-helvetica text-[9.811px] -mt-[2px] font-[400] text-[#2F3E46] opacity-80">Performance Scorecard</h1>
+  </div>
+</div> --}}
+
+
+        
+    {{!-- page5 --}}
+    <div class="relative w-[595px] h-[842px] flex flex-col justify-start gap-y-[20px] items-center bg-[#EFF3F8]">
+  <!-- Header -->
+  <div class="w-[595px] h-[71px] flex flex-row items-center justify-center bg-[#2F3E46]">
+    <div class="flex flex-row items-center justify-center">
+      <img class="w-[22px] h-[19px] m-1" src="photos/Frame 3.png" alt="Logo">
+      <h1 class="text-[12.8px] font-[700] font-helvetica text-[#FFEAC3]">HappyAspirants</h1>
+      <hr class="w-[366px] h-[2px] m-2 mt-3">
+      <h1 class="text-white opacity-60 h-[19px] text-sm">{{pageNumber}}</h1>
+    </div>
+  </div>
+
+  <!-- Strengths and Areas of Improvement Section -->
+  <div class="flex flex-row gap-[10px]">
+    <!-- Key Strengths -->
+    <div class="flex w-[247px] h-[277.47px] px-[18px] py-[17px] border-gray-300 border-[2px] rounded-lg bg-[rgba(228,228,228,0.60)] flex-col items-center justify-center">
+      <p class="font-[500] font-helvetica text-[12.874px]">Key Strengths</p>
+      <p class="font-[400] font-helvetica text-[9.011px] opacity-80 text-center mb-[10px]">Areas of Improvement based on feedback received from sessions taken.</p>
+      <div id="strengths" class="flex flex-wrap gap-[5px] justify-center items-center">
+        {{#each strengths}}
+          <span class="text-sm text-gray-700 bg-gray-200 px-2 py-1 rounded">{{this}}</span>
+        {{/each}}
+      </div>
+    </div>
+    <!-- Areas of Improvement -->
+    <div class="flex w-[247px] h-[277.47px] px-[18px] py-[17px] border-gray-300 border-[2px] rounded-lg bg-[rgba(228,228,228,0.60)] flex-col items-center justify-center">
+      <p class="font-[500] font-helvetica text-[12.874px]">Areas of Improvement</p>
+      <p class="font-[400] font-helvetica text-[9.011px] opacity-80 text-center mb-[10px]">Areas of Improvement based on feedback received from sessions taken.</p>
+      <div id="improvements" class="flex flex-wrap gap-[5px] justify-center items-center">
+        {{#each improvements}}
+          <span class="text-sm text-gray-700 bg-gray-200 px-2 py-1 rounded">{{this}}</span>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Personalized Action Plan -->
+  <div class="w-[507px] h-[265px] px-[22px] py-[17px] bg-white rounded-xl flex flex-col items-center border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+    <h1 class="w-full h-[29px] font-helvetica text-[12.462px] font-[500]">Personalized Action Plan</h1>
+    <hr class="h-[1px] opacity-80 bg-[#2F3E46] mb-[10px] w-full">
+    <p class="font-[400] text-[9.011px] font-helvetica opacity-80">Based on your key strengths and areas of improvements which have been identified, we recommend you the following sessions to improve upon these areas.</p>
+    <div class="flex gap-[10px] flex-row">
+      {{#each recommendations}}
+        <div class="flex flex-col pt-[10px] px-[10px] items-start justify-center w-[227px] h-[152px] rounded-[4px] border-[0.5px] border-black/20 bg-white">
+          <h1 class="font-helvetica text-[12.462px] font-[500] text-[#2F3E46]">{{title}}</h1>
+          <p class="font-helvetica text-[9.011px] font-[400] text-[#2F3E46] opacity-75">{{description}}</p>
+          <img class="ml-[10px]" src="" alt="">
+        </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="absolute bottom-1 flex flex-col items-end">
+    <hr class="w-[507px] h-[1.5px] bg-[#2F3E46] opacity-80 mb-[4px]">
+    <h1 class="font-helvetica text-[9.811px] -mt-[2px] font-[400] text-[#2F3E46] opacity-80">Recommendations</h1>
+  </div>
+</div>
+
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const areaofimporvement = [
+    {
+      img: "photos/Thinking-face.png", // Replace with the correct path
+      title: "Problem Solving",
+    },
+    {
+      img: "photos/Alarm-clock.png", // Replace with the correct path
+      title: "Time Management",
+    },
+    {
+      img: "photos/Electricity.png", // Replace with the correct path
+      title: "Accuracy",
+    },
+    {
+      img: "photos/🦆 emoji _rocket_.png", // Replace with the correct path
+      title: "Speed",
+    },
+  ];
+  
+  const renderAreas = (containerId, areas) => {
+    const container = document.getElementById(containerId);
+    areas.forEach((area) => {
+      const areaDiv = document.createElement("div");
+      areaDiv.className = "flex flex-wrap justify-center items-center px-[7.72px] py-[9.01px] border-gray-400 border-[2px] rounded-lg w-[70px] h-[87px]";
+      areaDiv.innerHTML = `
+        <img class="w-[41px] h-[41px]" src="${area.img}" alt="${area.title}">
+        <p class="flex text-center text-[7.72px] font-helvetica font-[500]">${area.title}</p>
+      `;
+      container.appendChild(areaDiv);
+    });
+  };
+  
+  // Populate Key Strengths and Areas of Improvement
+  renderAreas("strengths", areaofimporvement);
+  renderAreas("improvements", areaofimporvement);
+    const performancevalue={{candidate.performancevalue}};
+    const communicationvalue={{candidate.communicationvalue}};
+    const ctx = document.getElementById('performanceChart').getContext('2d');
+  // Function to create a vertical gradient for each bar
+  function createVerticalGradient(ctx, chartArea) {
+      const { left, right } = chartArea;
+      const gradient = ctx.createLinearGradient(left, 0, right, 0); // Horizontal gradient for horizontal bars
+      gradient.addColorStop(0, '#FFCFD8'); // Start color
+      gradient.addColorStop(1, '#C3E2FF'); // End color
+      return gradient;
+  }
+  
+  const performanceChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Technical Skills', 'Soft Skills', 'Problem Solving', 'Cultural Fit', 'Leadership'],
+          datasets: [{
+              label: 'Score',
+              data: [1, 2, 3, 4, 5], 
+              backgroundColor: function(context) {
+                  const chart = context.chart;
+                  const {ctx, chartArea} = chart;
+                  if (!chartArea) {
+                      // This case happens on initial chart render
+                      return null;
+                  }
+                  return createVerticalGradient(ctx, chartArea);
+              },
+              borderColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(255, 205, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+              ],
+              borderWidth: 1,
+            
+              borderRadius: Number.MAX_VALUE
+          }]
+      },
+      options: {
+          indexAxis: 'y',
+          scales: {
+              x: {
+                ticks: {
+                    stepSize: 10 // Set y-axis scale interval to 20
+                },
+                  beginAtZero: true,
+                  max: 120,
+                  barPercentage: 1, // Decrease bar width to 50% of the category width
+                categoryPercentage: 1 
+              },
+              y:{
+                barPercentage: 1, // Decrease bar width to 50% of the category width
+                categoryPercentage: 2,
+              }
+          },
+          plugins: {
+              legend: {
+                  display: false
+              }
+          }
+      }
+  });
+
+  const ctxRadar = document.getElementById('performanceRadarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['Technical Skills', 'Leadership' , 'Problem Solving', 'Cultural Fit','Soft Skills'],
+                datasets: [{
+                    label: 'Performance',
+                    data: [5, 4, 3, 2, 1],
+                    backgroundColor: 'rgba(0, 79, 255, 0.40)',
+                    borderColor: 'rgba(0, 79, 255, 0.40)',
+                    pointBackgroundColor: 'rgba(0, 79, 255, 0.40)',
+                    color:'#808080'
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        angleLines: { display: false },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+
+        
+        const ctxVertical = document.getElementById('verticalBarChart').getContext('2d');
+
+        
+        const chart = new Chart(ctxVertical, {
+            type: 'bar',
+            data: {
+                labels: ['Clarity', 'Confidence', 'Engagement', 'Articulation'],
+                datasets: [{
+                    label: 'Score',
+                    data: communicationvalue,
+                    backgroundColor: function(context) {
+                        const chart = context.chart;
+                        const {ctx, chartArea} = chart;
+                        if (!chartArea) {
+                            // This case happens on initial chart render
+                            return null;
+                        }
+                        return createVerticalGradient(ctx, chartArea);
+                    },
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: .1,
+                    borderRadius: Number.MAX_VALUE
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 6 // Decrease font size for x-axis labels
+                            }
+                        },
+                        barPercentage: 1, // Decrease bar width to 50% of the category width
+                        categoryPercentage: 2.5 // Decrease category width to make bars narrower
+        
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            stepSize: 20 // Set y-axis scale interval to 20
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+          });
+  </script>
+</body>
+</html>

@@ -11,21 +11,23 @@
 <body>
  <div class="main">
   <!-- first page -->
-  <div class='bg-[#2F3E46] w-[595px] h-[842px] mt-[200px] flex flex-col items-center justify-start gap-y-[60px]'>
-    <img class='w-full h-1/2' src="/photos/A4 - 6.png">
-    <h1 class='text-[#FFF] font-[700] text-[32px]'>Feedback Report</h1>
-    <div class='gap-[12px] flex flex-row items-center justify-center w-[441px] h-[73px]'>
-      <h1 class='font-[500] font-helvetica text-[20px] text-[#FFF]'>Mock DSA</h1>
-      <h1 class='h-full w-[2px] bg-[#FFF]'></h1>
-      <h1 class='font-[500] font-helvetica text-[20px] text-[#FFF]'>21 Sept 2024</h1>
-      <h1 class='h-full w-[2px] bg-[#FFF]'></h1>
-      <h1 class='font-[500] font-helvetica text-[20px] text-[#FFF]'>Komal Kungwani</h1>
+  <!-- first page -->
+    <div class="bg-[#2F3E46] w-[100vh] h-[100vh] mt-[200px] flex flex-col items-center justify-start gap-y-[60px]">
+      <img class="w-full h-1/2" src="{{imageSrc}}" alt="Feedback Report Image">
+      <h1 class="text-[#FFF] font-[700] text-[32px]">{{title}}</h1>
+      <div class="gap-[12px] flex flex-row items-center justify-center w-[441px] h-[73px]">
+          <h1 class="font-[500] font-helvetica text-[20px] text-[#FFF]">{{topic}}</h1>
+          <h1 class="h-full w-[2px] bg-[#FFF]"></h1>
+          <h1 class="font-[500] font-helvetica text-[20px] text-[#FFF]">{{date}}</h1>
+          <h1 class="h-full w-[2px] bg-[#FFF]"></h1>
+          <h1 class="font-[500] font-helvetica text-[20px] text-[#FFF]">{{name}}</h1>
+      </div>
+      <div class="flex flex-row items-center justify-center">
+          <img class="w-[43px] h-[36px] mr-[12px]" src="{{logoSrc}}" alt="Logo">
+          <h1 class="text-[25px] font-[700] font-helvetica text-[#FFEAC3]">{{companyName}}</h1>
+      </div>
     </div>
-    <div class='flex flex-row items-center justify-center'>
-      <img class='w-[43px] h-[36px] mr-[12px]' src="photos/Frame 3.png"></img>
-      <h1 class='text-[25px] font-[700] font-helvetica text-[#FFEAC3]'>HappyAspirants</h1>
-    </div>
-  </div>
+
       <!-- second page  -->
   
       <div class='bg-[#2F3E46] relative w-[595px] h-[842px] mt-[20px]  flex flex-col items-center justify-center gap-y-[10px]'>
@@ -125,40 +127,47 @@
     </div>
 
     <!-- page 4 -->
-    <div class="relative w-[595px] h-[842px] flex flex-col justify-center gap-y-[10px] items-center bg-[#EFF3F8]">
+    <!-- <div class="relative w-[595px] h-[842px] flex flex-col justify-center gap-y-[10px] items-center bg-[#EFF3F8]">
       <div class="w-[595px] h-[71px] flex flex-row items-center justify-center bg-[#2F3E46]">
-      <div class="flex flex-row items-center justify-center">
-          <img class='w-[22px] h-[19px] m-1'src="/photos/Frame 3.png" ></img>
-          <h1 class='text-[12.8px] font-[700] font-helvetica text-[#FFEAC3]'>HappyAspirants</h1>
-          <hr class='w-[366px] h-[2px] m-2 mt-3'></hr>
-          <h1 class='text-white opacity-60 h-[19px] text-sm'>3</h1>
+        <div class="flex flex-row items-center justify-center">
+          <img class="w-[22px] h-[19px] m-1" src="/photos/Frame 3.png" alt="Logo" />
+          <h1 class="text-[12.8px] font-[700] font-helvetica text-[#FFEAC3]">HappyAspirants</h1>
+          <hr class="w-[366px] h-[2px] m-2 mt-3" />
+          <h1 class="text-white opacity-60 h-[19px] text-sm">{{pageNumber}}</h1>
+        </div>
+      </div>
+    
+      <div class="w-[507px] h-[251px] px-[22px] py-[17px] bg-white rounded-xl flex flex-col items-center border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+        <h1 class="w-full h-[29px] font-helvetica text-[12.462px] font-[500] mb-[10px]">Performance Analysis</h1>
+        <hr class="h-[1px] opacity-80 bg-[#2F3E46] mb-[10px] w-full" />
+        <div class="h-[173px] w-full">
+  
+          <canvas id="performanceChart"></canvas>
+        </div>
+      </div>
+    
+      <div class="flex flex-row gap-[20px]">
+        <div class="w-[238px] h-[252px] py-[16.528px] px-[18.181px] bg-white rounded-xl flex flex-col items-center border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+         
+          <canvas id="performanceRadarChart"></canvas>
+        </div>
+        <div class="w-[238px] h-[252px] py-[16.528px] px-[18.181px] bg-white rounded-xl flex flex-col items-start border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+          <h1 class="font-helvetica font-[500] text-[12.462px] mb-[10px]">Communication Analysis</h1>
+          <hr class="h-[1px] opacity-80 bg-[#2F3E46] mb-[10px] w-full" />
+          <canvas id="verticalBarChart" width="600" height="400"></canvas>
+        </div>
+      </div>
+    
+      <div class="w-[507px] h-[177px] bg-white rounded-xl flex flex-col items-center border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+       
+      </div>
+    
+      <div class="absolute bottom-1 flex flex-col items-end">
+        <hr class="w-[507px] h-[1.5px] bg-[#2F3E46] opacity-80 mb-[4px]" />
+        <h1 class="font-helvetica text-[9.811px] -mt-[2px] font-[400] text-[#2F3E46] opacity-80">Performance Scorecard</h1>
       </div>
     </div>
-      <div class=' w-[507px] h-[251px] px-[22px] py-[17px] bg-white rounded-xl flex flex-col items-center  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
-          <h1 class='w-full h-[29px] font-helvetica text-[12.462px] font-[500] mb-[10px]'>Performance Analysis </h1>
-          <hr class='h-[1px]  opacity-80 bg-[#2F3E46] mb-[10px] w-full'></hr>
-          <div class=" h-[173px] w-full">
-            <canvas id="performanceChart"></canvas>
-          </div>
-      </div>
-      <div class='flex flex-row gap-[20px]'>
-          <div class='w-[238px] h-[252px] py-[16.528px] px-[18.181px] bg-white rounded-xl flex flex-col items-center  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
-            <canvas id="performanceRadarChart"></canvas>
-          </div>
-          <div class='w-[238px] h-[252px] py-[16.528px] px-[18.181px] bg-white rounded-xl flex flex-col items-start  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
-            <h1 class='font-helvetica font-[500] text-[12.462px] mb-[10px]'>Communication Analysis</h1>
-            <hr class='h-[1px]  opacity-80 bg-[#2F3E46] mb-[10px] w-full'></hr>
-            <canvas id="verticalBarChart" width="600" height="400"></canvas>
-           </div>
-      </div>
-      <div class='w-[507px] h-[177px] bg-white rounded-xl flex flex-col items-center  border border-[rgba(0,0,0,0.12)] shadow-[0px_2px_8px_rgba(0,0,0,0.04)]'>
-      </div>
-      <div class="absolute bottom-1  flex flex-col items-end">
-          <hr class="w-[507px] h-[1.5px] bg-[#2F3E46] opacity-80 mb-[4px]" />
-          <h1 class="font-helvetica text-[9.811px] -mt-[2px] font-[400] text-[#2F3E46] opacity-80">Performance Scorecard</h1>
-      </div>
-</div>
-
+     -->
  <!-- page 5 -->
  <div class="relative w-[595px] h-[842px] flex flex-col justify-start gap-y-[20px] items-center bg-[#EFF3F8]">
   <!-- Header -->
